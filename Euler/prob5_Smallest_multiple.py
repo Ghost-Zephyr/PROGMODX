@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
 
-n = 0 #2520
-a = 0
+n = 2520
+ar = []
 
 while True:
     for i in range(1, 11):
         if (n / i) == (n // i):
-            a = n
+            ar.append(i)
             break
-    i += 1
+
+a = n
+
+for i in ar:
+    if i < a:
+        a = i
 
