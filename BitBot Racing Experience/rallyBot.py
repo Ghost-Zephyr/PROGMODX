@@ -54,18 +54,25 @@ radio.on()
 display.show(Image.DIAMOND)
 
 while True:
-     if button_a.was_pressed() and button_b.was_pressed():
-          break
      msg = radio.receive()
      if msg == "AB":
           display.show(Image.ARROW_N)
           drive(1023)
      if msg == "A":
           display.show(Image.ARROW_W)
-          move(639, 767, 0, 0)
+          move(127, 1023, 0, 0) #(255, 1023, 0, 0)
      if msg == "B":
           display.show(Image.ARROW_E)
-          move(767, 639, 0, 0)
+          move(1023, 127, 0, 0) #(1023, 255, 0, 0)
+     if msg == "BAB":
+          display.show(Image.ARROW_S)
+          drive(-1023)
+     if msg == "BA":
+          display.show(Image.ARROW_W)
+          move(1023, 127, 1, 1)
+     if msg == "BB":
+          display.show(Image.ARROW_E)
+          move(127, 1023, 1, 1)
      if msg == "0":
           stop()
           display.show(Image.TARGET)

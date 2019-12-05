@@ -93,7 +93,7 @@ def lineDetector(side):  # 0 == venstre, 1 == høyre
     else:
         isLine = rightLineSensor.read_digital()
 
-    if(isLine == 0): #(isLine == 1): # Sensoren ser linjen
+    if(isLine == 1): # Sensoren ser linjen
         return True
     else:
         return False
@@ -102,60 +102,71 @@ def lineDetector(side):  # 0 == venstre, 1 == høyre
 def radiostyrt():
     while True:
         if button_a.was_pressed() and button_b.was_pressed():
+            stop()
             break
         msg = radio.receive()
-        if msg == "AB":
-            display.show(Image.ARROW_N)
-            drive(1023)
-        if msg == "A":
-            display.show(Image.ARROW_W)
-            move(512, 767, 0, 0)
-        if msg == "B":
-            display.show(Image.ARROW_E)
-            move(767, 512, 0, 0)
         if msg == "0":
             stop()
-            display.show(Image.DIAMOND)
+            display.show(Image.TARGET)
+        if msg == "AB":
+            display.show(Image.ARROW_N)
+            drive(767) #(1023)
+        if msg == "A":
+            display.show(Image.ARROW_W)
+            move(63, 511, 0, 0) #(127, 1023, 0, 0)
+        if msg == "B":
+            display.show(Image.ARROW_E)
+            move(511, 63, 0, 0) #(1023, 127, 0, 0)
+        if msg == "BAB":
+            display.show(Image.ARROW_S)
+            drive(-767) #(-1023)
+        if msg == "BA":
+            display.show(Image.ARROW_W)
+            move(511, 31, 1, 1) #(767, 255, 1, 1)
+        if msg == "BB":
+            display.show(Image.ARROW_E)
+            move(31, 511, 1, 1) #(255, 767, 1, 1)
         if msg == "PR":
             display.show(Image.UMBRELLA)
             randomNeo()
         if msg == "RB":
-            display.show(Image.TARGET)
+            display.show(Image.DIAMOND)
             i = pixelRainbow(i)
             sleep(20)
 
 def followthelines():
     while True:
+        if button_a.was_pressed() and button_b.was_pressed():
+            stop()
+            break
         isLeftLine = lineDetector(0)
         isRightLine = lineDetector(1)
-        if(isLeftLine is True) and (isRightLine is False):  # en linje sett
-            venstreLys(setLysstyrke(1), 0, 0)
-            stop()
-            sleep(50)
-            move(1023 + -200, 100, 1, 0) #skarpVenstre()
-            sleep(200)
-            stop()
-            sleep(50)
-            while(lineDetector(0) is True):
-                venstreLys(setLysstyrke(1), 0, 0)
-                move(0, 200, 0, 0) #mykLeft()
-
-        elif(isRightLine is True) and (isLeftLine is False):  # en linje sett
+        if(isRightLine is True) and (isLeftLine is False):  # en linje sett
             hoyreLys(setLysstyrke(1), 0, 0)
             stop()
             sleep(50)
-            move(100, 1023 + -200, 0, 1) #skarpHoyre()
+            move(127, 1023, 0, 1) #skarpHoyre()
             sleep(200)
             stop()
             sleep(50)
             while(lineDetector(1) is True):
                 hoyreLys(setLysstyrke(1), 0, 0)
-                move(200, 0, 0, 0) #mykHoyre()
-
+                move(255, 0, 0, 0) #mykHoyre()
+        elif(isLeftLine is True) and (isRightLine is False):  # en linje sett
+            venstreLys(setLysstyrke(1), 0, 0)
+            stop()
+            sleep(50)
+            move(1023, 127, 1, 0) #skarpVenstre()
+            sleep(200)
+            stop()
+            sleep(50)
+            while(lineDetector(0) is True):
+                venstreLys(setLysstyrke(1), 0, 0)
+                move(0, 255, 0, 0) #mykLeft()
         elif(isRightLine is False) and (isLeftLine is False):  # ingen linje
             venstreLys(0, setLysstyrke(1), 0)
             hoyreLys(0, setLysstyrke(1), 0)
-            drive(150)
+            drive(1023)
         else:
             venstreLys(0, setLysstyrke(1), setLysstyrke(1))  # 2 linjer sett
             hoyreLys(0, setLysstyrke(1), setLysstyrke(1))

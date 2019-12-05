@@ -55,25 +55,35 @@ display.show(Image.DIAMOND)
 
 while True:
      if button_a.was_pressed() and button_b.was_pressed():
+          stop()
           break
      msg = radio.receive()
+     if msg == "0":
+          stop()
+          display.show(Image.TARGET)
      if msg == "AB":
           display.show(Image.ARROW_N)
           drive(767)
      if msg == "A":
           display.show(Image.ARROW_W)
-          move(255, 511, 0, 0)
+          move(63, 511, 0, 0)
      if msg == "B":
           display.show(Image.ARROW_E)
-          move(511, 255, 0, 0)
-     if msg == "0":
-          stop()
-          display.show(Image.TARGET)
+          move(511, 63, 0, 0)
+     if msg == "BAB":
+          display.show(Image.ARROW_S)
+          drive(-767)
+     if msg == "BA":
+          display.show(Image.ARROW_W)
+          move(511, 63, 1, 1)
+     if msg == "BB":
+          display.show(Image.ARROW_E)
+          move(63, 511, 1, 1)
      if msg == "PR":
           display.show(Image.UMBRELLA)
           randomNeo()
      if msg == "RB":
-          display.show(Image.TARGET)
+          display.show(Image.DIAMOND)
           i = pixelRainbow(i)
           sleep(20)
 
