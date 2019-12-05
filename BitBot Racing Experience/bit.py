@@ -9,6 +9,7 @@ from microbit import *
 import radio
 
 display.show(Image.DIAMOND_SMALL)
+radio.config(channel=11)
 radio.on()
 
 while True:

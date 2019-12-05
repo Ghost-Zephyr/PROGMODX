@@ -59,13 +59,13 @@ while True:
      msg = radio.receive()
      if msg == "AB":
           display.show(Image.ARROW_N)
-          drive(767)
+          drive(1023)
      if msg == "A":
           display.show(Image.ARROW_W)
-          move(255, 511, 0, 0)
+          move(639, 767, 0, 0)
      if msg == "B":
           display.show(Image.ARROW_E)
-          move(511, 255, 0, 0)
+          move(767, 639, 0, 0)
      if msg == "0":
           stop()
           display.show(Image.TARGET)
@@ -73,7 +73,7 @@ while True:
           display.show(Image.UMBRELLA)
           randomNeo()
      if msg == "RB":
-          display.show(Image.TARGET)
+          display.show(Image.DIAMOND)
           i = pixelRainbow(i)
           sleep(20)
 
