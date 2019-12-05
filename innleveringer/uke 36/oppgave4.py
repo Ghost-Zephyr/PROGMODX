@@ -6,5 +6,5 @@ h = 4.91
 
 F = m * g * h
 
-print("En ball på {}kg {}m over bakken har en potensiell energi på {}N".format(m, h, F))
+print(f"En ball på {m}kg {h}m over bakken har en potensiell energi på {round(F,3)}N")
 
