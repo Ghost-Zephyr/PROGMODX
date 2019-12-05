@@ -21,7 +21,7 @@ def pixelRainbow(i):
           np[pixel_id] = (r, g, b)
      np.show()
      if i + 96 > 255:
-          i - 159
+          i -= 159
      return i + 48
 
 def pixelReset():
