@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
 try:
-    kroppsvekt = int(input("Kroppsvekt i kg: "))
+    kroppsvekt = int(input("\nKroppsvekt i kg: "))
 except ValueError:
-    print("Ikke et tall!")
+    print("\nIkke et tall!")
+    exit(420)
 
 vann = kroppsvekt * 15 / 100
 
-print("En person på {}kg, kommer til å dø etter å mistet {}kg vann".format(kroppsvekt, vann))
+print(f"En person på {kroppsvekt}kg, kommer til å dø etter å ha mistet {vann}kg vann")
 

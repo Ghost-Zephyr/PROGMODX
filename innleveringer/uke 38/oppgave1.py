@@ -17,8 +17,10 @@ def volum(r):
     print("Volum:", round(V, 2))
     return V
 
+print("\nSkriv inn radius og dette scriptet regner ut Omkrets Areal og Volum.")
+
 try:
-    r = int(input("Radius: "))
+    r = int(input("\nRadius: "))
 except ValueError:
     print("Ikke et tall!")
 

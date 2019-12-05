@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# næ ass
 
+# bruh
 print("Hallo Norge!")
 

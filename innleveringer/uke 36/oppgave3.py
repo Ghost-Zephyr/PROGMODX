@@ -3,5 +3,5 @@
 fornavn = str(input("Fornavn: "))
 etternavn = str(input("Etternavn: "))
 
-print("\n\nHallo, {} {}.\nTakk for at du kjører min kode!".format(fornavn, etternavn))
+print(f"\n\nHallo, {fornavn} {etternavn}.\nTakk for at du kjører min kode!")
 
