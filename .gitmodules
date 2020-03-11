@@ -1,0 +1,3 @@
+[submodule "pygame"]
+	path = pygame
+	url = https://github.com/Ghost-Zephyr/MxG.git
